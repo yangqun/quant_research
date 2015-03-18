@@ -7,7 +7,7 @@ import java.util.List;
 //import com.datayes.whale.common.client.model.response.MDLSHL2Msg.SHL2MarketData.SellLevelsItem;
 
 public class Level2MarketData {
-	private Date updateTime;
+	private String updateTime;
 	private String securityId;
 	private Double preClosePrice;
 	private Double openPrice;
@@ -15,16 +15,16 @@ public class Level2MarketData {
 	private Double lowPrice;
 	private Double lastPrice;
 	private Double closePrice;
-	private Double tradeVolume;
-	private Double turnOver;
+	private Long tradeVolume;
+	private Long turnOver;
 	//买一到买十
 	private List<BidLevelsItemSub> bidLevelsList;
 	//卖一到卖十
 	private List<SellLevelsItemSub> sellLevelList;
-	public Date getUpdateTime() {
+	public String getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
 	public String getSecurityId() {
@@ -69,16 +69,18 @@ public class Level2MarketData {
 	public void setClosePrice(Double closePrice) {
 		this.closePrice = closePrice;
 	}
-	public Double getTradeVolume() {
+	
+	
+	public Long getTradeVolume() {
 		return tradeVolume;
 	}
-	public void setTradeVolume(Double tradeVolume) {
+	public void setTradeVolume(Long tradeVolume) {
 		this.tradeVolume = tradeVolume;
 	}
-	public Double getTurnOver() {
+	public Long getTurnOver() {
 		return turnOver;
 	}
-	public void setTurnOver(Double turnOver) {
+	public void setTurnOver(Long turnOver) {
 		this.turnOver = turnOver;
 	}
 	public List<BidLevelsItemSub> getBidLevelsList() {

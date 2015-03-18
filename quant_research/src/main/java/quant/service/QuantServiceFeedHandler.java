@@ -1,5 +1,6 @@
 package quant.service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +60,9 @@ public class QuantServiceFeedHandler extends ServiceFeedHandler{
     Long averTime = 0L;
     @Override
     public void onSHL2Message(Result result) {
-    	getMarketData(result);
+
+		getMarketData(result);
+		
 //        System.out.println("+++++++++++++++++++++++++++++++++++++"+i++);
 //        SHL2MarketData shl2MarketData = (SHL2MarketData) result.getBody();
 //        System.out.println("-------------------------------------");
@@ -88,11 +91,13 @@ public class QuantServiceFeedHandler extends ServiceFeedHandler{
        //System.out.println("---------HK---------");
     }
     
-    public Level2MarketData getMarketData(Result result){
+    public Level2MarketData getMarketData(Result result) {
     	System.out.println("*************************");
     	Level2MarketData marketData = new Level2MarketData();
     	SHL2MarketData shl2MarketData = (SHL2MarketData) result.getBody();
-    	//marketData.setUpdateTime(updateTime);
+    	shl2MarketData.getUpdateTime();
+    	//该时间戳精确到秒，不是毫秒,如142718000
+    	marketData.setUpdateTime(DateUtil.timestamp2Str(shl2MarketData.getUpdateTime()));
     	marketData.setSecurityId(shl2MarketData.getSecurityID());
     	marketData.setPreClosePrice(shl2MarketData.getPreCloPrice().getValue()/1000D);
     	marketData.setHighPrice(shl2MarketData.getHighPrice().getValue()/1000D);
@@ -100,6 +105,8 @@ public class QuantServiceFeedHandler extends ServiceFeedHandler{
     	marketData.setLowPrice(shl2MarketData.getLowPrice().getValue()/1000d);
     	marketData.setClosePrice(shl2MarketData.getClosePrice().getValue()/1000d);
     	marketData.setLastPrice(shl2MarketData.getLastPrice().getValue()/1000d);
+    	marketData.setTradeVolume(shl2MarketData.getTradVolume().getValue());
+    	marketData.setTurnOver(shl2MarketData.getTurnover().getValue());
     	List<BidLevelsItemSub> bidLevelsItemSubList = new ArrayList<BidLevelsItemSub>();
     	for (BidLevelsItem bidLevelsItem : shl2MarketData.getBidLevelsList()) {
     		BidLevelsItemSub temp = new BidLevelsItemSub();

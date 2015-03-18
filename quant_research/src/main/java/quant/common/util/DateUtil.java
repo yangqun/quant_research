@@ -1,9 +1,12 @@
 package quant.common.util;
 
+import java.security.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 import org.apache.commons.lang3.time.DateUtils;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -333,4 +336,17 @@ public class DateUtil {
 		int month = calendar.get(Calendar.MONTH);
 		return month + 1;
 	}
+	
+	public static String timestamp2Str(int timestamp){
+		DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");  
+        try {  
+            //方法一  
+            String tsStr = sdf.format(timestamp);  
+            return tsStr;
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+        return null;
+	}
+	
 }
