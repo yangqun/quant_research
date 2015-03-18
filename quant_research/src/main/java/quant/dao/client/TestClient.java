@@ -23,7 +23,7 @@ class TestClient {
         logon.addSubscription(Config.Service.SHL2.ID, Config.Service.SHL2.VERSION, Config.MessageID.SHL2.SHL2_MARKET_DATA,"SecurityID","600000");
         //发送订阅参数对象到server，并且构造一个继承BaseFeedHandler或者ServiceFeedHandler的类的实例，用于接收订阅的数据
         client.subscribe(new TestServiceFeedHandler(), logon);
-        
+        //syso
         //Thread.sleep(10000);
         //关闭订阅
         //client.close();
