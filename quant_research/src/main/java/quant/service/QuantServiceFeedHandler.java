@@ -10,9 +10,6 @@ import com.datayes.whale.common.client.model.response.MDLSHL2Msg.SHL2MarketData;
 import com.datayes.whale.common.client.model.response.MDLSHL2Msg.SHL2MarketData.BidLevelsItem;
 
 public class QuantServiceFeedHandler extends ServiceFeedHandler{
-
-	
-	
 	
 	//result即为接收到的数据，其中分为2部分，header和body，
     //需要根据header中的serviceID和messageID，将其强转为相应的Msg，参考onSHL1Message()
