@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>%date [%thread] [%level] %logger Line:%L - %msg %n</pattern>
+		</encoder>
+	</appender>
+	<appender name="ROLL-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <file>c:/quant/logs/daily.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/daily.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>%date [%thread] [%level] %logger Line:%L - %msg %n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+		    <level>ERROR</level>
+		    <onMatch>DENY</onMatch>
+		    <onMismatch>ACCEPT</onMismatch>
+		</filter>
+    </appender>
+    <appender name="ROLL-FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <file>c:/quant/logs/daily-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/daily-error.%d{yyyy-MM-dd}.log</fileNamePattern>  
+        </rollingPolicy>
+        <encoder charset="UTF-8">  
+            <pattern>%date [%thread] [%level] %logger Line:%L - %msg %n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+	        <level>ERROR</level>
+	        <onMatch>ACCEPT</onMatch>
+	        <onMismatch>DENY</onMismatch>
+	    </filter>
+    </appender>
+    
+    <appender name="USER-LOG" class="ch.qos.logback.core.FileAppender">
+		<file>c:/quant/logs/user.log</file>
+		<append>true</append>
+		<encoder charset="UTF-8">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss}, %msg %n</pattern>
+		</encoder>
+	</appender>
+	<appender name="STDOUT-USER-LOG" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss}, %msg %n</pattern>
+		</encoder>
+	</appender>
+    
+    <!-- -->
+    <logger name="com.datayes.mom">
+        <level value="debug" />
+        <appender-ref ref="STDOUT" />
+    </logger>
+    
+    <logger name="com.datayes.mom.api.handler.LogInterceptor">
+        <level value="debug" />
+        <appender-ref ref="STDOUT-USER-LOG" />
+    </logger>
+     
+    <logger name="com.datayes.mom.api.handler.LogInterceptor">
+        <level value="debug" />
+        <appender-ref ref="USER-LOG" />
+    </logger>
+    
+    <logger name="com.datayes.mom">
+        <level value="info" />
+        <appender-ref ref="ROLL-FILE" />
+        <appender-ref ref="ROLL-FILE-ERROR" />
+    </logger> 
+</configuration>
