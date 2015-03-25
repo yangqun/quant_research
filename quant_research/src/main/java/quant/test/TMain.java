@@ -7,9 +7,9 @@ public class TMain {
 	public static void main(String[] args) {
 		Leve2InfoDao leve2InfoDao = new Leve2InfoDao();
 		//leve2InfoDao.getLevel2Info("159901");
-		leve2InfoDao.getSZLevel2Info("159901");
-		leve2InfoDao.getSHL2Index("999999");
-		
+		//leve2InfoDao.getSZLevel2Info("159901");
+		//leve2InfoDao.getSHL2Index("000001");
+		leve2InfoDao.getSZL2ETFIndex("150018");
 	}
 
 }

@@ -26,7 +26,7 @@ public class SHL2IndexServiceFeedHandler extends ServiceFeedHandler{
     //需要根据header中的serviceID和messageID，将其强转为相应的Msg，参考onSHL1Message()
     @Override
     public void onAPIMessage(Result result) {
-        System.out.println("---------API---------");
+        //System.out.println("---------API---------");
 
     }
     @Override
@@ -35,28 +35,30 @@ public class SHL2IndexServiceFeedHandler extends ServiceFeedHandler{
     }
     @Override
     public void onCFFEXMessage(Result result) {
-
+    	System.out.println("onCFFEXMessage");
     }
     @Override
     public void onCZCEMessage(Result result) {
-
+    	System.out.println("onCZCEMessage");
     }
     @Override
     public void onDCEMessage(Result result) {
-
+    	System.out.println("onDCEMessage");
     }
     @Override
     public void onSHFEMessage(Result result) {
-
+    	System.out.println("onSHFEMessage");
     }
     
     @Override
     public void onSHL1Message(Result result) {
-    	
+    	System.out.println("onSHL1Message");
     }
 
     @Override
     public void onSHL2Message(Result result) {
+    	//System.out.println("onSHL2Message");
+    	getSHL2Index(result);
     }
     @Override
     public void onSZL1Message(Result result) {
@@ -64,8 +66,9 @@ public class SHL2IndexServiceFeedHandler extends ServiceFeedHandler{
     }
     @Override
     public void onSZL2Message(Result result) {
+    	System.out.println("onSZL2Message");
 //    	System.out.println(result);
-    	getSHL2Index(result);
+    	
     }
     @Override
     public void onHKEXMessage(Result result) {
@@ -79,13 +82,13 @@ public class SHL2IndexServiceFeedHandler extends ServiceFeedHandler{
     	//szl2MarketData.getUpdateTime();
     	//该时间戳精确到秒，不是毫秒,如142718000
     	//marketData.setUpdateTime(DateUtil.timestamp2Str(szl2MarketData.getUpdateTime()));
-    	shl2IndexExt.setCloseIndex(shl2Index.getCloseIndex().getValue()/1000D);
+    	shl2IndexExt.setCloseIndex(shl2Index.getCloseIndex().getValue()/100000D);
     	shl2IndexExt.setDataStatus(shl2Index.getDataStatus());
-    	shl2IndexExt.setHighIndex(shl2Index.getHighIndex().getValue()/1000D);
-    	shl2IndexExt.setLastIndex(shl2Index.getLastIndex().getValue()/1000D);
-    	shl2IndexExt.setLowIndex(shl2Index.getLowIndex().getValue()/1000D);
-    	shl2IndexExt.setOpenIndex(shl2Index.getOpenIndex().getValue()/1000D);
-    	shl2IndexExt.setPreCloseIndex(shl2Index.getPreCloseIndex().getValue()/1000D);
+    	shl2IndexExt.setHighIndex(shl2Index.getHighIndex().getValue()/100000D);
+    	shl2IndexExt.setLastIndex(shl2Index.getLastIndex().getValue()/100000D);
+    	shl2IndexExt.setLowIndex(shl2Index.getLowIndex().getValue()/100000D);
+    	shl2IndexExt.setOpenIndex(shl2Index.getOpenIndex().getValue()/100000D);
+    	shl2IndexExt.setPreCloseIndex(shl2Index.getPreCloseIndex().getValue()/100000D);
     	shl2IndexExt.setSecurityId(shl2Index.getSecurityID());
     	//shl2IndexExt.setTradeTime(szl2Index.getTradTime());
     	shl2IndexExt.setTradeVolume(shl2Index.getTradVolume().getValue()/1D);
